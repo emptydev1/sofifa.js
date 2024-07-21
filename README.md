@@ -6,7 +6,7 @@
   <img src="https://img.shields.io/github/license/emptydev1/sofifa.js.svg" alt="license">
 </p>
 
-<p>A simple and easy-to-use package to obtain player information from data from the sofifa.com website in addition to generating teams randomly.</p>
+A simple and easy-to-use package to obtain player information from data from the **[sofifa.com](https://sofifa.com/)** website in addition to generating teams randomly.
 
 <h1>Table of Contents</h1>
 
