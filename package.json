@@ -1,0 +1,54 @@
+{
+  "name": "sofifa.js",
+  "version": "1.0.0",
+  "description": "A simple and easy-to-use package to obtain player information from data from the sofifa.com website in addition to generating teams randomly.",
+  "type": "commonjs",
+  "main": "dist/index.js",
+  "keywords": [
+    "futebol",
+    "information",
+    "matches",
+    "players",
+    "webscraping",
+    "data"
+  ],
+  "files": [
+    "dist/",
+    "LICENSE",
+    "README.md"
+  ],
+  "license": "Apache-2.0",
+  "contributors": [
+    {
+      "name": "Empty™",
+      "email": "emptydev8@gmail.com",
+      "url": "https://github.com/emptydev1"
+    }
+  ],
+  "author": "emptydev1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/emptydev1/sofifa.js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/emptydev1/sofifa.js/issues"
+  },
+  "homepage": "https://github.com/emptydev1/sofifa.js#README",
+  "engines": {
+    "node": ">=18.17.0",
+    "yarn": ">=1.22.19",
+    "npm": ">=7.0.0"
+  },
+  "scripts": {
+    "run": "node lib/index.js",
+    "test": "tape test/*.js"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.12",
+    "undici": "^6.19.2"
+  },
+  "devDependencies": {
+    "tape": "^5.8.1",
+    "eslint": "^9.6.0"
+  }
+}

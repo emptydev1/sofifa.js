@@ -1,0 +1,26 @@
+{
+    "PLAYER_POSITIONS": {
+        "Attack": {
+            "acronyms": [ "ST", "LW", "CF", "ATA" ],
+            "_id": 0
+        },
+        "Center": {
+            "acronyms": [ "LM", "CAM", "CM", "RM", "CDM" ],
+            "_id": 1
+        },
+        "Defense": {
+            "acronyms": [ "CB", "LB", "RB", "RWB", "LWB" ],
+            "_id": 2
+        },
+        "Goalkeeper": {
+            "acronyms": [ "GK" ],
+            "_id": 3
+        }
+    },
+    "ALLOWED_FILTERS": [ 
+        "keyword", "pacl", "pach", "shol",
+        "shoh", "pasl", "pash", "dril",
+        "drih", "defl", "defh", "phyl", 
+        "phyh" 
+    ]
+}
