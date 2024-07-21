@@ -1,4 +1,4 @@
-<h1>sofifa.js</h1>
+<h1 style="text-align: center;">sofifa.js</h1>
 
 <p align="center">
   <img src="https://img.shields.io/npm/v/sofifa.js.svg" alt="npm version">
