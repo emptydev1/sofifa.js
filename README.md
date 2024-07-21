@@ -9,6 +9,7 @@
 <p>A simple and easy-to-use package to obtain player information from data from the sofifa.com website in addition to generating teams randomly.</p>
 
 <h1>Table of Contents</h1>
+
 - [Installation](#installation)
 - [Usage](#usage)
   - [Retrieve Players](#retrieve-players)
