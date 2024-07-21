@@ -40,7 +40,7 @@ Retrieve a list of players based on specific filters.
 const { retrievePlayers } = require('sofifa.js');
 
 // Example: Retrieve players with specified filters (minium defense up to 50 and maxium defense up to 70)
-sofifa.retrievePlayers({ defl: 50, defh: 70 }) // Sintaxe: <Object>.retrievePlayers(?filters: <Object | null>)
+retrievePlayers({ defl: 50, defh: 70 }) // Sintaxe: <Object>.retrievePlayers(?filters: <Object | null>)
     .then(console.log)
     .catch(console.error);
 ```
@@ -50,10 +50,10 @@ sofifa.retrievePlayers({ defl: 50, defh: 70 }) // Sintaxe: <Object>.retrievePlay
 Fetch detailed statistics of a player based on specific filters or a endpoint (endpoint is received from the "retrievePlayers" function)
 
 ```javascript
-const sofifa = require('sofifa.js');
+const { playerStats } = require('sofifa.js');
 
 // Example: Fetch player stats with specified filters
-sofifa.playerStats({ keyword: 'Bellingham' }) // Sintaxe: <Object>.playerStats(?filters: <Object | null>, ?endpoint: <String | null>) 
+playerStats({ keyword: 'Bellingham' }) // Sintaxe: <Object>.playerStats(?filters: <Object | null>, ?endpoint: <String | null>) 
     .then(console.log)
     .catch(console.error);
 ```
