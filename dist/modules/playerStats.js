@@ -14,16 +14,11 @@ module.exports = async function playerStats(filters, root) {
     if (!document) return {};
     
     const $ = load(document, { lowerCaseTags: true }, true);
-    const [ _, age, birthDate, height, weight ] = $('div.profile.clearfix p').first().clone().find('span').remove().end().text().trim().match(/(\d{2})y\.o\. \(([^)]+)\) (\d+)cm \/ [^ ]+ (\d+)kg/) || [];
     const data = {
         id: $('p label:contains(\"ID\")').parent().text().split(/\s+/)[1],
         fullName: $("div.profile.clearfix h1").first().text(),
-        selfImage: $('div.profile.clearfix img').first().attr('data-src'),
+        ...JSON.parse($('script:contains("givenName")').first().text().trim()),
         positions: $('div.profile.clearfix p > span.pos').map((_, el) => $(el).text()).toArray(),
-        birthDate,
-        age: age ? parseInt(age) : null,
-        weight: weight ? parseInt(weight) : null,
-        height: height ? parseInt(height) : null,
         rating: {},
         overall: null
     };
