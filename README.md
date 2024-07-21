@@ -66,7 +66,7 @@ Generate a random team with an optional name.
 const { createTeam } = require('sofifa.js');
 
 // Example: Create a random team with an optional name
-console.log(createTeam('Dream Team'));
+console.log(createTeam('Dream Team')); // Sintaxe: <Object>.createTeam(?name: String)
 ```
 
 <h2>Filters</h2>
