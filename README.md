@@ -1,5 +1,3 @@
----
-
 <h1>sofifa.js</h1>
 
 <p align="center">
@@ -22,12 +20,11 @@
 <h1>Installation</h1>
 
 To install this dependency to your project you must have **[Node.js](https://github.com/nodejs/node)** installed on your machine.
-To install this dependency to your project you must have **[Node.js](https://github.com/nodejs/node)** installed on your machine.
 
 If you already have **Node.js** installed on your machine, just run the following command in your terminal:
 
 ```bash
-$ npm install dynamicdb@latest --save
+$ npm install sofifa.js@latest --save
 ```
 
 **Note:** It is highly recommended that when installing this dependency you install the latest released version.
@@ -65,13 +62,10 @@ sofifa.playerStats({ keyword: 'Bellingham' }) // Sintaxe: <Object>.playerStats(?
 Generate a random team with an optional name.
 
 ```javascript
-const sofifa = require('sofifa.js');
+const { createTeam } = require('sofifa.js');
 
 // Example: Create a random team with an optional name
-const teamName = 'Dream Team';
-sofifa.createTeam(teamName)
-    .then(team => console.log(team))
-    .catch(error => console.error(error));
+console.log(createTeam('Dream Team'));
 ```
 
 <h2>Filters</h2>
