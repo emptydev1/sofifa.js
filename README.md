@@ -47,7 +47,7 @@ retrievePlayers({ defl: 50, defh: 70 }) // Sintaxe: <Object>.retrievePlayers(?fi
 
 <h3>Player Stats</h3>
 
-Fetch detailed statistics of a player based on specific filters or a identificator (ID)
+Fetch detailed statistics of a player based on specific filters or a identificator (ID).
 
 ```javascript
 const { playerStats } = require('sofifa.js');
