@@ -1,6 +1,6 @@
 {
   "name": "sofifa.js",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A simple and easy-to-use package to obtain player information from data from the sofifa.com website in addition to generating teams randomly.",
   "type": "commonjs",
   "main": "dist/index.js",

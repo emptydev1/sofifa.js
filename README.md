@@ -6,7 +6,7 @@
   <img src="https://img.shields.io/github/license/emptydev1/sofifa.js.svg" alt="license">
 </p>
 
-A simple and easy-to-use package to obtain player information from data from the **[sofifa.com](https://sofifa.com/)** website in addition to generating teams randomly.
+A simple and easy-to-use package to obtain player information from data from the **[sofifa.com](https://sofifa.com/)** website in addition to generating teams randomly. This library was created to meet the needs of a brazillian [WhatsApp bot](https://chat.whatsapp.com/GMGb5faPJjf7xfCMvQysaW), however it is also available for public use.
 
 <h1>Table of Contents</h1>
 
@@ -47,13 +47,13 @@ retrievePlayers({ defl: 50, defh: 70 }) // Sintaxe: <Object>.retrievePlayers(?fi
 
 <h3>Player Stats</h3>
 
-Fetch detailed statistics of a player based on specific filters or a endpoint (endpoint is received from the "retrievePlayers" function)
+Fetch detailed statistics of a player based on specific filters or a identificator (ID)
 
 ```javascript
 const { playerStats } = require('sofifa.js');
 
 // Example: Fetch player stats with specified filters
-playerStats({ keyword: 'Bellingham' }) // Sintaxe: <Object>.playerStats(?filters: <Object | null>, ?endpoint: <String | null>) 
+playerStats({ keyword: 'Bellingham' }) // Sintaxe: <Object>.playerStats(?filters: <Object | null>, ?id: <String | null>) 
     .then(console.log)
     .catch(console.error);
 ```
@@ -76,6 +76,10 @@ You can use the following filters to refine your search:
 ### General Filters
 
 - **keyword**: General search keyword (e.g., player name)
+- **oal**: Minium overall rating (e.g. `50` for players with overall above 50)
+- **oah**: Maxium overall rating (e.g. `50` for players with overall below 50)
+
+**Note:** The current lowest overall on the website **[sofifa.com](https://sofifa.com/)** is **47**, so if you enter a value lower than this, the function will probably return an empty object.
 
 ### Outfield Player Filters
 

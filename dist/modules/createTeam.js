@@ -24,16 +24,6 @@ module.exports = function createTeam(name) {
             defenders: Array.from({ length: 4 }, () => retrievePlayer(PLAYER_POSITIONS.Defense)),
             midfielders: Array.from({ length: 4 }, () => retrievePlayer(PLAYER_POSITIONS.Center)),
             inventory: Array.from({ length: 3 }, () => retrievePlayer())
-        },
-        get overall() {
-            const players = [ 
-                ...this.lineup.forwards,
-                ...this.lineup.defenders,
-                ...this.lineup.midfielders,
-                ...this.lineup.inventory
-            ];
-                
-            return (this.lineup.goalkeeper.overall + players.reduce((a, b) => a + b.overall, 0)) / players.length;
         }
     };
     

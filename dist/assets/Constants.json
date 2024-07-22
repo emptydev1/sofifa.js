@@ -1,15 +1,28 @@
 {
     "PLAYER_POSITIONS": {
         "Attack": {
-            "acronyms": [ "ST", "LW", "CF", "ATA" ],
+            "acronyms": [
+                "LS", "ST", "RS",
+                "LW", "LF", "CF",
+                "RF", "RW"
+            ],
             "_id": 0
         },
         "Center": {
-            "acronyms": [ "LM", "CAM", "CM", "RM", "CDM" ],
+            "acronyms": [
+                "LAM", "CAM", "RAM",
+                "CDM", "CM", "RM",
+                "LM", "LDM", "RDM",
+                "LCM", "RCM"
+            ],
             "_id": 1
         },
         "Defense": {
-            "acronyms": [ "CB", "LB", "RB", "RWB", "LWB" ],
+            "acronyms": [
+                "CB", "RB", "LB",
+                "LWB", "RWB", "LCB",
+                "RCB"
+            ],
             "_id": 2
         },
         "Goalkeeper": {
@@ -21,6 +34,8 @@
         "keyword", "pacl", "pach", "shol",
         "shoh", "pasl", "pash", "dril",
         "drih", "defl", "defh", "phyl", 
-        "phyh" 
-    ]
+        "phyh", "oal", "oah"
+    ],
+    "MINIUM_STATISTIC": 0,
+    "MAXIUM_STATISTIC": 99
 }
