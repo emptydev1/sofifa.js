@@ -40,7 +40,7 @@ Retrieve a list of players based on specific filters.
 const { retrievePlayers } = require('sofifa.js');
 
 // Example: Retrieve players with specified filters (minium defense up to 50 and maxium defense up to 70)
-retrievePlayers({ defl: 50, defh: 70 }) // Sintaxe: <Object>.retrievePlayers(?filters: <Object | null>)
+retrievePlayers({ defl: 50, defh: 70 }) // Sintaxe: <Object>.retrievePlayers(?filters: <Object | null> = {})
     .then(console.log)
     .catch(console.error);
 ```
@@ -53,7 +53,7 @@ Fetch detailed statistics of a player based on specific filters or a identificat
 const { playerStats } = require('sofifa.js');
 
 // Example: Fetch player stats with specified filters
-playerStats({ keyword: 'Bellingham' }) // Sintaxe: <Object>.playerStats(?filters: <Object | null>, ?id: <String | null>) 
+playerStats({ keyword: 'Bellingham' }) // Sintaxe: <Object>.playerStats(?filters: <Object | null> = {}, ?id: <String | null> = null) 
     .then(console.log)
     .catch(console.error);
 ```
@@ -66,7 +66,19 @@ Generate a random team with an optional name.
 const { createTeam } = require('sofifa.js');
 
 // Example: Create a random team with an optional name
-console.log(createTeam('Dream Team')); // Sintaxe: <Object>.createTeam(?name: String)
+console.log(createTeam('Dream Team')); // Sintaxe: <Object>.createTeam(?name: String = null)
+```
+
+### Get a random player
+
+Search for a random player based on a minimum and maximum overall and define the inverse probability of the player with the highest overall coming.
+
+```javascript
+const { getRandomPlayer } = require('sofifa.js');
+
+getRandomPlayer(47, 60) // Sintaxe: <Object>.getRandomPlayer(min: Number, max: Number, ?invProb: Number = 1.3)
+    .then((player) => console.log(`[${player.id}] ${player.fullName}`))
+    .catch(console.error);
 ```
 
 <h2>Filters</h2>
@@ -79,7 +91,7 @@ You can use the following filters to refine your search:
 - **oal**: Minium overall rating (e.g. `50` for players with overall above 50)
 - **oah**: Maxium overall rating (e.g. `50` for players with overall below 50)
 
-**Note:** The current lowest overall on the website **[sofifa.com](https://sofifa.com/)** is **47**, so if you enter a value lower than this, the function will probably return an empty object.
+**Note:** Currently, the minimum and maximum overall values for players in **[sofifa.com](https://sofifa.com/)** are 47 and 91, respectively. Therefore, if you enter values outside this range, the function will likely return an empty object.
 
 ### Outfield Player Filters
 
