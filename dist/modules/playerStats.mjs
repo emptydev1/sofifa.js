@@ -1,10 +1,10 @@
 'use strict';
 
-const { fetch } = require('undici');
-const { load } = require('cheerio');
-const retrievePlayers = require('./retrievePlayers');
+import { fetch } from 'undici';
+import { load } from 'cheerio';
+import retrievePlayers from './retrievePlayers.mjs';
 
-module.exports = async function playerStats(filters, id) {
+export default async function playerStats(filters, id) {
     const endpoint = filters ? (await retrievePlayers(filters)).at(0)?.endpoint : `/player/${id}`;
     
     if (!endpoint || !/^\/player\/\d+(\/[A-Za-z-]+\/\d+(\/)?)?$/.test(endpoint)) return {};

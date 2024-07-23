@@ -38,11 +38,23 @@ $ npm install sofifa.js@latest --save
 Retrieve a list of players based on specific filters.
 
 ```javascript
-const { retrievePlayers } = require('sofifa.js');
+import { retrievePlayers } from 'sofifa.js';
 
 // Example: Retrieve players with specified filters (minium defense up to 50 and maxium defense up to 70)
 retrievePlayers({ defl: 50, defh: 70 }) // Sintaxe: <Object>.retrievePlayers(?filters: <Object | null> = {})
     .then(console.log)
+    .catch(console.error);
+```
+
+### Get a random player
+
+Search for a random player based on a minimum and maximum overall and define the inverse probability of the player with the highest overall coming.
+
+```javascript
+import { getRandomPlayer } from 'sofifa.js';
+
+getRandomPlayer(47, 60) // Sintaxe: <Object>.getRandomPlayer(min: Number, max: Number, ?invProb: Number = 1.3)
+    .then((player) => console.log(`[${player.id}] ${player.fullName}`))
     .catch(console.error);
 ```
 
@@ -51,7 +63,7 @@ retrievePlayers({ defl: 50, defh: 70 }) // Sintaxe: <Object>.retrievePlayers(?fi
 Fetch detailed statistics of a player based on specific filters or a identificator (ID).
 
 ```javascript
-const { playerStats } = require('sofifa.js');
+import { playerStats } from 'sofifa.js';
 
 // Example: Fetch player stats with specified filters
 playerStats({ keyword: 'Bellingham' }) // Sintaxe: <Object>.playerStats(?filters: <Object | null> = {}, ?id: <String | null> = null) 
@@ -64,22 +76,10 @@ playerStats({ keyword: 'Bellingham' }) // Sintaxe: <Object>.playerStats(?filters
 Generate a random team with an optional name.
 
 ```javascript
-const { createTeam } = require('sofifa.js');
+import { createTeam } from 'sofifa.js';
 
 // Example: Create a random team with an optional name
 console.log(createTeam('Dream Team')); // Sintaxe: <Object>.createTeam(?name: String = null)
-```
-
-### Get a random player
-
-Search for a random player based on a minimum and maximum overall and define the inverse probability of the player with the highest overall coming.
-
-```javascript
-const { getRandomPlayer } = require('sofifa.js');
-
-getRandomPlayer(47, 60) // Sintaxe: <Object>.getRandomPlayer(min: Number, max: Number, ?invProb: Number = 1.3)
-    .then((player) => console.log(`[${player.id}] ${player.fullName}`))
-    .catch(console.error);
 ```
 
 <h2>Filters</h2>

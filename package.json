@@ -1,9 +1,9 @@
 {
   "name": "sofifa.js",
-  "version": "1.2.2",
+  "version": "2.0.0",
   "description": "A simple and easy-to-use package to obtain player information from data from the sofifa.com website in addition to generating teams randomly.",
-  "type": "commonjs",
-  "main": "dist/index.js",
+  "type": "module",
+  "main": "dist/index.mjs",
   "keywords": [
     "futebol",
     "information",
@@ -40,8 +40,8 @@
     "npm": ">=7.0.0"
   },
   "scripts": {
-    "run": "node lib/index.js",
-    "test": "tape test/*.js"
+    "run": "node dist/index.mjs",
+    "test": "tape test/*.mjs"
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.12",

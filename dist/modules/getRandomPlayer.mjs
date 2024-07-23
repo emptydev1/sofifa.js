@@ -1,10 +1,10 @@
 'use strict';
 
-const retrievePlayers = require('./retrievePlayers');
-const Constants = require('../assets/Constants');
-const playerStats = require('./playerStats');
+import Constants from '../assets/Constants.json' assert { type: 'json' };
+import retrievePlayers from './retrievePlayers.mjs';
+import playerStats from './playerStats.mjs';
 
-module.exports = async function getRandomPlayer(min, max, prob = 1.3) {
+export default async function getRandomPlayer(min, max, prob = 1.3) {
     if (![ min, max ].every(
         (value) =>
             typeof value === 'number'
@@ -24,5 +24,5 @@ module.exports = async function getRandomPlayer(min, max, prob = 1.3) {
     const players = await retrievePlayers({ oah: overalls[cumulative.findIndex((value) => value > number)], oal: min });
     const player = players.sort(() => Math.random() - 0.3)[Math.floor(Math.random() * players.length)];
     
-    return player?.id ? playerStats(null, player.id) : {};
+    return player?.id ? await playerStats(null, player.id) : {};
 };
