@@ -1,4 +1,4 @@
-<div style="text-align: center;"><h1>sofifa.js</h1></div>
+<h1 align="center">sofifa.js</h1>
 
 <p align="center">
   <img src="https://img.shields.io/npm/v/sofifa.js.svg" alt="npm version">
@@ -15,6 +15,7 @@ A simple and easy-to-use package to obtain player information from data from the
   - [Retrieve Players](#retrieve-players)
   - [Player Stats](#player-stats)
   - [Create Team](#create-team)
+  - [Get a Random Player](#get-a-random-player)
 - [Filters](#filters)
 - [License](#license)
 

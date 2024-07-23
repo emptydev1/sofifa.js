@@ -37,5 +37,7 @@
         "phyh", "oal", "oah"
     ],
     "MINIUM_STATISTIC": 0,
-    "MAXIUM_STATISTIC": 99
+    "MAXIUM_STATISTIC": 99, 
+    "MINIUM_OVERALL_RATING": 47,
+    "MAXIUM_OVERALL_RATING": 91
 }
