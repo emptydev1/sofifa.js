@@ -24,5 +24,5 @@ module.exports = async function getRandomPlayer(min, max, prob = 1.3) {
     const players = await retrievePlayers({ oah: overalls[cumulative.findIndex((value) => value > number)], oal: min });
     const player = players.sort(() => Math.random() - 0.3)[Math.floor(Math.random() * players.length)];
     
-    return player?.id ? playerStats(null, player.id) : null;
+    return player?.id ? playerStats(null, player.id) : {};
 };
