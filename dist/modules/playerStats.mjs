@@ -9,13 +9,16 @@ export default async function playerStats(filters, id) {
     
     if (!endpoint || !/^\/player\/\d+(\/[A-Za-z-]+\/\d+(\/)?)?$/.test(endpoint)) return {};
     
-    const document = await fetch(`https://sofifa.com${endpoint}`).then((e) => e.text()).catch(() => '');
+    const origin = `https://sofifa.com${endpoint}`;
+    const document = await fetch(origin)
+        .then((e) => e.text())
+        .catch(() => '');
     
     if (!document) return {};
     
     const $ = load(document, { lowerCaseTags: true }, true);
     const data = {
-        id: $('p label:contains(\"ID\")').parent().text().split(/\s+/)[1],
+        id: new URL(origin).pathname.split('/').at(2),
         fullName: $('div.profile.clearfix h1').first().text(),
         ...JSON.parse($('script:contains("givenName")').first().text().trim()),
         positions: $('div.profile.clearfix p > span.pos').map((_, el) => $(el).text()).toArray(),
