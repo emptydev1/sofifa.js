@@ -1,6 +1,6 @@
 {
     "PLAYER_POSITIONS": {
-        "Attack": {
+        "Forward": {
             "acronyms": [
                 "LS", "ST", "RS",
                 "LW", "LF", "CF",
@@ -8,7 +8,7 @@
             ],
             "_id": 0
         },
-        "Center": {
+        "Midfielder": {
             "acronyms": [
                 "LAM", "CAM", "RAM",
                 "CDM", "CM", "RM",

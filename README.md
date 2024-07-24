@@ -13,9 +13,9 @@ A simple and easy-to-use package to obtain player information from data from the
 - [Installation](#installation)
 - [Usage](#usage)
   - [Retrieve Players](#retrieve-players)
+  - [Get a Random Player](#get-a-random-player)
   - [Player Stats](#player-stats)
   - [Create Team](#create-team)
-  - [Get a Random Player](#get-a-random-player)
 - [Filters](#filters)
 - [License](#license)
 
@@ -53,6 +53,7 @@ Search for a random player based on a minimum and maximum overall and define the
 ```javascript
 import { getRandomPlayer } from 'sofifa.js';
 
+// Example of how to get a random player with maxium and minium overall ratings
 getRandomPlayer(47, 60) // Sintaxe: <Object>.getRandomPlayer(min: Number, max: Number, ?invProb: Number = 1.3)
     .then((player) => console.log(`[${player.id}] ${player.fullName}`))
     .catch(console.error);
@@ -73,13 +74,19 @@ playerStats({ keyword: 'Bellingham' }) // Sintaxe: <Object>.playerStats(?filters
 
 ### Create Team
 
-Generate a random team with an optional name.
+Creates a random team with the specified name and the number of players. 
 
 ```javascript
 import { createTeam } from 'sofifa.js';
 
-// Example: Create a random team with an optional name
-console.log(createTeam('Dream Team')); // Sintaxe: <Object>.createTeam(?name: String = null)
+// Example of team creation
+createTeam('Dream Team') // Sintaxe: <Object>.createTeam(name: String = null, ?options: Object = { midfielders: 4, defenders: 3, forwards: 3, inventory: 3 })
+    .then((team) =>
+        Object.values(team.lineup)
+        .flat()
+        .forEach((player) =>
+            console.log(`[${player.id}] ${player.fullName} (${player.jobTitle}) | ${player.overall}ov`)))
+    .catch(console.error);
 ```
 
 <h2>Filters</h2>
