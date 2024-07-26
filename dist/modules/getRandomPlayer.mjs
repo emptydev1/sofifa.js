@@ -1,7 +1,7 @@
 'use strict';
 
-import Constants from '../assets/Constants.json' assert { type: 'json' };
 import retrievePlayers from './retrievePlayers.mjs';
+import Constants from '../assets/Constants.mjs';
 import playerStats from './playerStats.mjs';
 
 export default async function getRandomPlayer(min, max, prob = 1.3) {
@@ -25,4 +25,4 @@ export default async function getRandomPlayer(min, max, prob = 1.3) {
     const player = players.sort(() => Math.random() - 0.3)[Math.floor(Math.random() * players.length)];
     
     return player?.id ? await playerStats(null, player.id) : {};
-};
+}

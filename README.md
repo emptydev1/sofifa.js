@@ -16,6 +16,8 @@ A simple and easy-to-use package to obtain player information from data from the
   - [Get a Random Player](#get-a-random-player)
   - [Player Stats](#player-stats)
   - [Create Team](#create-team)
+  - [Teams showdown](#teams-showdown)
+  - [Calculate overall](#calculate-overall)
 - [Filters](#filters)
 - [License](#license)
 
@@ -33,7 +35,7 @@ $ npm install sofifa.js@latest --save
 
 <h2>Usage</h2>
 
-<h3>Retrieve Players</h3>
+### Retrieve Players
 
 Retrieve a list of players based on specific filters.
 
@@ -59,7 +61,7 @@ getRandomPlayer(47, 60) // Sintaxe: <Object>.getRandomPlayer(min: Number, max: N
     .catch(console.error);
 ```
 
-<h3>Player Stats</h3>
+### Player Stats
 
 Fetch detailed statistics of a player based on specific filters or a identificator (ID).
 
@@ -87,6 +89,48 @@ createTeam('Dream Team') // Sintaxe: <Object>.createTeam(name: String = null, ?o
         .forEach((player) =>
             console.log(`[${player.id}] ${player.fullName} (${player.jobTitle}) | ${player.overall}ov`)))
     .catch(console.error);
+```
+
+### Teams Showdown
+
+Simulate a battle between two teams, where the winner is determined based on their average overall rating. The team with the higher average rating has a greater chance of winning.
+
+```javascript
+import { createTeam, showdown } from 'sofifa.js';
+
+(async () => {
+    // Create two teams
+    const nightmareTeam = await createTeam('Nightmare Team');
+    const dreamTeam = await createTeam('Dream Team');
+    
+    // Start a showdown between the two teams
+    const winnerId = showdown(nightmareTeam.id, dreamTeam.id);
+    
+    // Determine which team won the battle
+    const winner = winnerId === nightmareTeam.id ? nightmareTeam : dreamTeam;
+
+    console.log(`Team selected as the winner: ${winner.name} (ID: ${winner.id})`);
+})();
+```
+
+### Calculate Overall
+
+Calculate the average overall rating of a given list of players. This is useful for evaluating the performance of a team based on its players' average ratings.
+
+```javascript
+import { calculateOverall, createTeam } from 'sofifa.js';
+
+(async () => {
+    // Create a team with the specified name
+    const team = await createTeam('Dream Team');
+    
+    // Calculate the average overall rating for all players in the team's lineup
+    const players = Object.values(team.lineup).flat(); // Flatten the lineup to get a list of all players
+    const average = calculateOverall(players);
+    
+    // Output the team's average overall rating
+    console.log(`[${team.id}] ${team.name} - Average Overall: ${average.toFixed(2)} points`);
+})();
 ```
 
 <h2>Filters</h2>

@@ -1,8 +1,8 @@
 'use strict';
 
-import Constants from '../assets/Constants.json' assert { type: 'json' };
 import { fetch } from 'undici';
 import { load } from 'cheerio';
+import Constants from '../assets/Constants.mjs';
 
 export default async function retrievePlayers(filters = {}) {
     if (typeof filters !== 'object' || !Object.keys(filters).every((key) => Constants.ALLOWED_FILTERS.includes(key))) throw new TypeError(`The "filters" parameter is invalid. Expected an object with the keys ${Constants.ALLOWED_FILTERS.join(', ')}`);
@@ -29,4 +29,4 @@ export default async function retrievePlayers(filters = {}) {
                typeof player.overall === 'number'
                && /^\/player\/\d+\/[a-zA-Z0-9\-]+\/\d+\/$/.test(player.endpoint))
         .map((player) => ({ id: player.endpoint.split('/').at(2), ...player }));
-};
+}
