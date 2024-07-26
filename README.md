@@ -104,7 +104,7 @@ import { createTeam, showdown } from 'sofifa.js';
     const dreamTeam = await createTeam('Dream Team');
     
     // Start a showdown between the two teams
-    const winnerId = showdown(nightmareTeam.id, dreamTeam.id);
+    const winnerId = showdown(nightmareTeam, dreamTeam);
     
     // Determine which team won the battle
     const winner = winnerId === nightmareTeam.id ? nightmareTeam : dreamTeam;
