@@ -4,13 +4,16 @@
 import calculateOverall from './modules/calculateOverall.mjs';
 import retrievePlayers from './modules/retrievePlayers.mjs';
 import getRandomPlayer from './modules/getRandomPlayer.mjs';
+import getFormation from './modules/getFormation.mjs';
 import playerStats from './modules/playerStats.mjs';
+import reorderTeam from './modules/reorderTeam.mjs';
 import createTeam from './modules/createTeam.mjs';
 import showdown from './modules/showdown.mjs';
 
 export {
     calculateOverall, retrievePlayers,
-    getRandomPlayer, playerStats,
+    getRandomPlayer, getFormation,
+    playerStats, reorderTeam,
     createTeam, showdown
 };
 

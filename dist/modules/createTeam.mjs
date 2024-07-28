@@ -2,6 +2,7 @@
 
 import { readFileSync } from 'node:fs';
 import Constants from '../assets/Constants.mjs';
+import getFormation from './getFormation.mjs';
 import path from 'node:path';
 
 export default async function createTeam(name, options = {}) {
@@ -10,7 +11,7 @@ export default async function createTeam(name, options = {}) {
             midfielders: 3, defenders: 4, 
             inventory: 3, forwards: 3
         },
-        options
+        getFormation(options) || {}
     );
     
     if (typeof name !== 'string') throw new TypeError(`The 'name' parameter must be a string. Received: ${typeof name}`);
@@ -40,10 +41,6 @@ export default async function createTeam(name, options = {}) {
         creationDate: new Date().getTime(),
         lineup: {
             goalkeeper: retrievePlayer(Constants.PLAYER_POSITIONS.Goalkeeper),
-            forwards: Array.from(
-                { length: options.forwards },
-                () => retrievePlayer(Constants.PLAYER_POSITIONS.Forward)
-            ),
             defenders: Array.from(
                 { length: options.defenders },
                 () => retrievePlayer(Constants.PLAYER_POSITIONS.Defense)
@@ -52,6 +49,10 @@ export default async function createTeam(name, options = {}) {
                 { length: options.midfielders },
                 () => retrievePlayer(Constants.PLAYER_POSITIONS.Midfielder)
             ),
+            forwards: Array.from(
+                { length: options.forwards },
+                () => retrievePlayer(Constants.PLAYER_POSITIONS.Forward)
+            )
         },
         inventory: Array.from({ length: options.inventory }, () => retrievePlayer())
     };

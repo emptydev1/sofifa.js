@@ -31,6 +31,7 @@ export default async function playerStats(filters, id) {
                 {}
             ),
         overall: parseInt($('div.grid .col div.sub:contains("Overall")').parent().children('em').text()),
+        position: null,
         endpoint
     };
     
