@@ -11,13 +11,11 @@ A simple and easy-to-use package to obtain player information from data from the
 <h1>Table of Contents</h1>
 
 - [Installation](#installation)
-- [Usage](#usage)
+- [Usage Examples](#usage-examples)
   - [Retrieve Players](#retrieve-players)
   - [Get a Random Player](#get-a-random-player)
   - [Player Stats](#player-stats)
-  - [Create Team](#create-team)
-  - [Teams showdown](#teams-showdown)
-  - [Calculate overall](#calculate-overall)
+- [Documentation](#documentation)
 - [Filters](#filters)
 - [License](#license)
 
@@ -33,17 +31,30 @@ $ npm install sofifa.js@latest --save
 
 **Note:** It is highly recommended that when installing this dependency you install the latest released version.
 
-<h2>Usage</h2>
+<h2>Usage Examples</h2>
 
 ### Retrieve Players
 
-Retrieve a list of players based on specific filters.
+Retrieve a list of players based on specific **[filters](https://github.com/emptydev1/sofifa.js/blob/main/docs/v2/usage/searchFilters.md)**.
 
 ```javascript
 import { retrievePlayers } from 'sofifa.js';
 
 // Example: Retrieve players with specified filters (minium defense up to 50 and maxium defense up to 70)
-retrievePlayers({ defl: 50, defh: 70 }) // Sintaxe: <Object>.retrievePlayers(?filters: <Object | null> = {})
+retrievePlayers({ defl: 50, defh: 70 })
+    .then(console.log)
+    .catch(console.error);
+```
+
+### Player Stats
+
+Fetch detailed statistics of a player based on specific **[filters](https://github.com/emptydev1/sofifa.js/blob/main/docs/v2/usage/searchFilters.md)** or a identificator (ID).
+
+```javascript
+import { playerStats } from 'sofifa.js';
+
+// Example: Fetch player stats with specified filters
+playerStats({ keyword: 'Bellingham' }) 
     .then(console.log)
     .catch(console.error);
 ```
@@ -56,130 +67,14 @@ Search for a random player based on a minimum and maximum overall and define the
 import { getRandomPlayer } from 'sofifa.js';
 
 // Example of how to get a random player with maxium and minium overall ratings
-getRandomPlayer(47, 60) // Sintaxe: <Object>.getRandomPlayer(min: Number, max: Number, ?invProb: Number = 1.3)
+getRandomPlayer(47, 60)
     .then((player) => console.log(`[${player.id}] ${player.fullName}`))
     .catch(console.error);
 ```
 
-### Player Stats
+<h1 align="center">Documentation</h1>
 
-Fetch detailed statistics of a player based on specific filters or a identificator (ID).
-
-```javascript
-import { playerStats } from 'sofifa.js';
-
-// Example: Fetch player stats with specified filters
-playerStats({ keyword: 'Bellingham' }) // Sintaxe: <Object>.playerStats(?filters: <Object | null> = {}, ?id: <String | null> = null) 
-    .then(console.log)
-    .catch(console.error);
-```
-
-### Create Team
-
-Creates a random team with the specified name and the number of players. 
-
-```javascript
-import { createTeam } from 'sofifa.js';
-
-// Example of team creation
-createTeam('Dream Team') // Sintaxe: <Object>.createTeam(name: String = null, ?options: Object = { midfielders: 4, defenders: 3, forwards: 3, inventory: 3 })
-    .then((team) =>
-        Object.values(team.lineup)
-        .flat()
-        .forEach((player) =>
-            console.log(`[${player.id}] ${player.fullName} (${player.jobTitle}) | ${player.overall}ov`)))
-    .catch(console.error);
-```
-
-### Teams Showdown
-
-Simulate a battle between two teams, where the winner is determined based on their average overall rating. The team with the higher average rating has a greater chance of winning.
-
-```javascript
-import { createTeam, showdown } from 'sofifa.js';
-
-(async () => {
-    // Create two teams
-    const nightmareTeam = await createTeam('Nightmare Team');
-    const dreamTeam = await createTeam('Dream Team');
-    
-    // Start a showdown between the two teams
-    const winnerId = showdown(nightmareTeam, dreamTeam);
-    
-    // Determine which team won the battle
-    const winner = winnerId === nightmareTeam.id ? nightmareTeam : dreamTeam;
-
-    console.log(`Team selected as the winner: ${winner.name} (ID: ${winner.id})`);
-})();
-```
-
-### Calculate Overall
-
-Calculate the average overall rating of a given list of players. This is useful for evaluating the performance of a team based on its players' average ratings.
-
-```javascript
-import { calculateOverall, createTeam } from 'sofifa.js';
-
-(async () => {
-    // Create a team with the specified name
-    const team = await createTeam('Dream Team');
-    
-    // Calculate the average overall rating for all players in the team's lineup
-    const players = Object.values(team.lineup).flat(); // Flatten the lineup to get a list of all players
-    const average = calculateOverall(players);
-    
-    // Output the team's average overall rating
-    console.log(`[${team.id}] ${team.name} - Average Overall: ${average.toFixed(2)} points`);
-})();
-```
-
-<h2>Filters</h2>
-
-You can use the following filters to refine your search:
-
-### General Filters
-
-- **keyword**: General search keyword (e.g., player name)
-- **oal**: Minium overall rating (e.g. `50` for players with overall above 50)
-- **oah**: Maxium overall rating (e.g. `50` for players with overall below 50)
-
-**Note:** Currently, the minimum and maximum overall values for players in **[sofifa.com](https://sofifa.com/)** are 47 and 91, respectively. Therefore, if you enter values outside this range, the function will likely return an empty object.
-
-### Outfield Player Filters
-
-- **pacl**: Minimum Pace rating (e.g., `70` for players with pace above 70)
-- **pach**: Maximum Pace rating (e.g., `90` for players with pace below 90)
-- **shol**: Minimum Shooting rating (e.g., `70` for players with shooting above 70)
-- **shoh**: Maximum Shooting rating (e.g., `90` for players with shooting below 90)
-- **pasl**: Minimum Passing rating (e.g., `70` for players with passing above 70)
-- **pash**: Maximum Passing rating (e.g., `90` for players with passing below 90)
-- **dril**: Minimum Dribbling rating (e.g., `70` for players with dribbling above 70)
-- **drih**: Maximum Dribbling rating (e.g., `90` for players with dribbling below 90)
-- **defl**: Minimum Defense rating (e.g., `70` for players with defense above 70)
-- **defh**: Maximum Defense rating (e.g., `90` for players with defense below 90)
-- **phyl**: Minimum Physical rating (e.g., `70` for players with physical above 70)
-- **phyh**: Maximum Physical rating (e.g., `90` for players with physical below 90)
-
-### Goalkeeper Filters
-
-The following filters are equivalent to the outfield player filters but for goalkeepers:
-
-- **divl**: Minimum Diving rating (equivalent to pacl)
-- **divh**: Maximum Diving rating (equivalent to pach)
-- **hanl**: Minimum Handling rating (equivalent to shol)
-- **hanh**: Maximum Handling rating (equivalent to shoh)
-- **kicl**: Minimum Kicking rating (equivalent to pasl)
-- **kich**: Maximum Kicking rating (equivalent to pash)
-- **refl**: Minimum Reflexes rating (equivalent to dril)
-- **refh**: Maximum Reflexes rating (equivalent to drih)
-- **spdl**: Minimum Speed rating (equivalent to defl)
-- **spdh**: Maximum Speed rating (equivalent to defh)
-- **posl**: Minimum Positioning rating (equivalent to phyl)
-- **posh**: Maximum Positioning rating (equivalent to phyh)
-
----
-
-This comprehensive list of filters allows you to fine-tune your search to find exactly the players or goalkeepers you need based on various attributes and criteria.
+<p>To see all the documentation for this project and see basic examples of how to use it, just access the repository of <o><a href="https://github.com/emptydev1/sofifa.js/blob/main/docs">GitHub</a></o>.</p>
 
 <h1 align="center">Contribution guidelines</h1>
 

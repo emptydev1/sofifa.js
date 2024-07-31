@@ -18,10 +18,11 @@ export default function showdown(challenger, defender, draw, declineRate) {
     const defenders = Object.values(defender.lineup).flat();
     const chgOver = calculateOverall(challengers, declineRate);
     const defOver = calculateOverall(defenders, declineRate);
+    const totalOverall = chgOver + defOver;
     const number = Math.random();
     
     return number > draw * (1 - (Math.abs(chgOver - defOver) / Math.max(chgOver, defOver)))
-        ? number < chgOver / (chgOver + calculateOverall(defenders))
+        ? (chgOver / totalOverall) / ((chgOver / totalOverall) + (defOver / totalOverall)) > number
             ? challenger.id
             : defender.id
         : null;

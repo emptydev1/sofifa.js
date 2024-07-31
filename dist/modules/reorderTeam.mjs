@@ -14,12 +14,12 @@ export default function reorderTeam(formation, team) {
     if (typeof options !== 'object') throw new TypeError('Cannot parse the formation to a object');
     
     const players = Object.values([
-        ...team.lineup.forwards,
         ...team.lineup.defenders,
-        ...team.lineup.midfielders
+        ...team.lineup.midfielders,
+        ...team.lineup.forwards
     ]).flat();
     
-    if (Object.values(options).reduce((total, item) => total + item, 0) < players.length) throw new TypeError('Formation has fewer positions than available players');
+    if (Object.values(options).reduce((total, item) => total + item, 0) < players.length) throw new RangeError('Formation has fewer positions than available players');
     
     team.lineup = Object.assign(team.lineup, { defenders: [], midfielders: [], forwards: [] });
     

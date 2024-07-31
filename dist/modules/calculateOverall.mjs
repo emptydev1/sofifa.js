@@ -5,6 +5,8 @@ import Constants from '../assets/Constants.mjs';
 const positions = Object.values(Constants.PLAYER_POSITIONS);
 
 export default function calculateOverall(players, declineRate) {
+    if (players.some((player) => Constants.PLAYER_SCHEMA.validate(player).error)) throw new TypeError('Failed to parse players data');
+    
     declineRate = typeof declineRate === 'number' && declineRate > 0 && declineRate < 1 ? declineRate : 0.10;
     
     return players.reduce((total, player) => {
@@ -17,7 +19,7 @@ export default function calculateOverall(players, declineRate) {
                 ? declineRate / 2
                 : declineRate;
         
-        return total + Math.max(0, Math.trunc(player.overall * (1 - percent)));
+        return total + Math.max(0, player.overall * (1 - percent));
     },
     0) / players.length;
 }
