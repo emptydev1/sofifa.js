@@ -1,10 +1,10 @@
 'use strict';
 
-import Constants from '../assets/Constants.mjs';
-import getFormation from './getFormation.mjs';
-import merge from 'lodash/merge.js';
+const { merge } = require('lodash');
+const Constants = require('../assets/Constants');
+const getFormation = require('./getFormation');
 
-export default function reorderTeam(formation, team) {
+module.exports = function reorderTeam(formation, team) {
     const { error } = Constants.TEAM_SCHEMA.validate(team);
     
     if (error) throw error;
@@ -42,4 +42,4 @@ export default function reorderTeam(formation, team) {
             }
         }
     );
-}
+};

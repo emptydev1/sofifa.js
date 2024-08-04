@@ -1,11 +1,10 @@
 'use strict';
 
-import { readFileSync } from 'node:fs';
-import Constants from '../assets/Constants.mjs';
-import getFormation from './getFormation.mjs';
-import path from 'node:path';
+const Constants = require('../assets/Constants');
+const getFormation = require('./getFormation');
+const path = require('node:path');
 
-export default async function createTeam(name, options = {}) {
+module.exports = async function createTeam(name, options = {}) {
     options = Object.assign(
         {
             midfielders: 3, defenders: 4, 
@@ -56,4 +55,4 @@ export default async function createTeam(name, options = {}) {
         },
         inventory: Array.from({ length: options.inventory }, () => retrievePlayer())
     };
-}
+};

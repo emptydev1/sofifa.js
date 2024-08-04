@@ -1,11 +1,11 @@
 'use strict';
 
-import calculateOverall from './calculateOverall.mjs';
-import Constants from '../assets/Constants.mjs';
+const calculateOverall = require('./calculateOverall');
+const Constants = require('../assets/Constants');
 
 const positions = Object.values(Constants.PLAYER_POSITIONS);
 
-export default function showdown(challenger, defender, draw, declineRate) {
+module.exports = function showdown(challenger, defender, draw, declineRate) {
     draw = typeof draw === 'number' && draw > 0 && draw <= 1 ? draw : 0.1;
     
     const [ error ] = [ challenger, defender ]
@@ -26,4 +26,4 @@ export default function showdown(challenger, defender, draw, declineRate) {
             ? challenger.id
             : defender.id
         : null;
-}
+};

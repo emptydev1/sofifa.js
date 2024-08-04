@@ -1,10 +1,10 @@
 'use strict';
 
-import { fetch } from 'undici';
-import { load } from 'cheerio';
-import Constants from '../assets/Constants.mjs';
+const { fetch } = require('undici');
+const { load } = require('cheerio');
+const Constants = require('../assets/Constants');
 
-export default async function retrievePlayers(filters = {}) {
+module.exports = async function retrievePlayers(filters = {}) {
     if (typeof filters !== 'object' || !Object.keys(filters).every((key) => Constants.ALLOWED_FILTERS.includes(key))) throw new TypeError(`The "filters" parameter is invalid. Expected an object with the keys ${Constants.ALLOWED_FILTERS.join(', ')}`);
     if (filters.keyword && typeof filters.keyword !== 'string') throw new TypeError(`The "keyword" filter is invalid. Expected a string, received: ${typeof filters.keyword}`);
     if (!Object.entries(filters).every(([key, value]) => key !== 'keyword' ? typeof value === 'number' && value >= Constants.MINIUM_STATISTIC && value <= Constants.MAXIUM_STATISTIC : true)) throw new TypeError(`The selected filters are invalid. Except for "keyword", all others must be a number between ${Constants.MINIUM_STATISTIC} and ${Constants.MAXIUM_STATISTIC}`);
@@ -29,4 +29,4 @@ export default async function retrievePlayers(filters = {}) {
                typeof player.overall === 'number'
                && /^\/player\/\d+\/[a-zA-Z0-9\-]+\/\d+\/$/.test(player.endpoint))
         .map((player) => ({ id: player.endpoint.split('/').at(2), ...player }));
-}
+};

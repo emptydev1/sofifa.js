@@ -1,10 +1,9 @@
 'use strict';
 
-import Constants from '../assets/Constants.mjs';
-
+const Constants = require('../assets/Constants');
 const positions = Object.values(Constants.PLAYER_POSITIONS);
 
-export default function calculateOverall(players, declineRate) {
+module.exports = function calculateOverall(players, declineRate) {
     if (players.some((player) => Constants.PLAYER_SCHEMA.validate(player).error)) throw new TypeError('Failed to parse players data');
     
     declineRate = typeof declineRate === 'number' && declineRate > 0 && declineRate < 1 ? declineRate : 0.10;
@@ -22,4 +21,4 @@ export default function calculateOverall(players, declineRate) {
         return total + Math.max(0, player.overall * (1 - percent));
     },
     0) / players.length;
-}
+};

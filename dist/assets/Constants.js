@@ -1,5 +1,4 @@
-import Joi from 'joi';
-
+const Joi = require('joi');
 const Constants = {
     PLAYER_POSITIONS: {
         Forward: {
@@ -92,4 +91,4 @@ Constants.TEAM_SCHEMA = Joi.object({
     inventory: Joi.array().items(Constants.PLAYER_SCHEMA).required()
 });
 
-export default Constants;
+module.exports = Constants;

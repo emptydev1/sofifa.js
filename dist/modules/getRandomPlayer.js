@@ -1,10 +1,10 @@
 'use strict';
 
-import retrievePlayers from './retrievePlayers.mjs';
-import Constants from '../assets/Constants.mjs';
-import playerStats from './playerStats.mjs';
+const retrievePlayers = require('./retrievePlayers');
+const Constants = require('../assets/Constants');
+const playerStats = require('./playerStats');
 
-export default async function getRandomPlayer(min, max, prob = 1.3) {
+module.exports = async function getRandomPlayer(min, max, prob = 1.3) {
     if (![ min, max ].every(
         (value) =>
             typeof value === 'number'
@@ -25,4 +25,4 @@ export default async function getRandomPlayer(min, max, prob = 1.3) {
     const player = players.sort(() => Math.random() - 0.3)[Math.floor(Math.random() * players.length)];
     
     return player?.id ? await playerStats(null, player.id) : {};
-}
+};

@@ -1,6 +1,6 @@
 'use strict';
 
-export default function getFormation(formation) {
+module.exports = function getFormation(formation) {
     return typeof formation === 'string' && /^(\d)-(\d)-(\d)$/.test(formation)
         ? formation.split('-')
             .reduce((data, item, index) =>
@@ -10,4 +10,4 @@ export default function getFormation(formation) {
         : typeof formation === 'object'
             ? formation
             : void 0;
-}
+};
